@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Medical_Request__c deploy manifest. Checked against UAT + force-app.
+  Does not deploy by itself. Example:
+    sf project deploy start --manifest docs/medical-request/package.xml --target-org <alias>
+
+  Included: object + fields/RTs/list views/validation/compact layout,
+  MED-13/14/15 Apex + LWC, SLA + claims CMDT, flows, QA, email service,
+  pages/layouts/paths, Bank Account (lookup to MR), reports + dashboard
+  on Medical Request, MED-04 perm set, Medical Team Bupa app, sharing.
+
+  Not included (legacy Request__c / not this object):
+  Medical folder reports (Claims, Pre-authorization), Medical Team Dashboard,
+  Medical Team Activity dashboard, DomesticMedicalRequestService, EDSMedicalRequest.
+  Folder shares point at a UAT user (dev@deraya.prod) — fix before prod.
+  Email Service run-as is a UAT user — change in Setup after deploy.
+-->
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>ClaimsRequiredDocumentsController</members>
+        <members>ClaimsRequiredDocumentsControllerTest</members>
+        <members>ClaimsRequiredDocumentsResolver</members>
+        <members>ClaimsRequiredDocumentsResolverTest</members>
+        <members>MedicalRequestEmailHandler</members>
+        <members>MedicalRequestEmailHandlerTest</members>
+        <members>SLABusinessDaysCalculator</members>
+        <members>SLABusinessDaysCalculatorTest</members>
+        <members>SLARecalculationBatch</members>
+        <members>SLARecalculationBatchTest</members>
+        <members>SLARecalculationScheduler</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>Medical_Team_Bupa</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>Domestic_Medical_Claims_Requirement.*</members>
+        <members>SLA_Matrix_Rule.*</members>
+        <name>CustomMetadata</name>
+    </types>
+    <types>
+        <members>Bank_Account__c</members>
+        <members>Domestic_Medical_Claims_Requirement__mdt</members>
+        <members>Medical_Request__c</members>
+        <members>SLA_Matrix_Rule__mdt</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Medical_Request__c</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>Bank_Account__c-en_US</members>
+        <members>Medical_Request__c-en_US</members>
+        <name>CustomObjectTranslation</name>
+    </types>
+    <types>
+        <members>MedicalRequestDashboard</members>
+        <name>DashboardFolder</name>
+    </types>
+    <types>
+        <members>MedicalRequestDashboard/kmajfzzQybKZVNtsyRpjHavcCyYLua</members>
+        <name>Dashboard</name>
+    </types>
+    <types>
+        <members>Medical Request Reply Handler</members>
+        <name>EmailServicesFunction</name>
+    </types>
+    <types>
+        <members>Approvals</members>
+        <members>Claims</members>
+        <members>Medical_Team_Request_Page</members>
+        <members>Miscellaneous</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>Assign_Medical_Request_to_Queue</members>
+        <members>New_Bank_Account</members>
+        <members>New_Medical_Request</members>
+        <members>Record_Triggered_Outbound_Email</members>
+        <members>Request_Auto_Link_Contact</members>
+        <members>Scheduled_SLA_Recalculation_Flow</members>
+        <members>Screen_Flow_Create_Domestic_Medical_Request</members>
+        <members>chronic_medication_reminder</members>
+        <name>Flow</name>
+    </types>
+    <types>
+        <members>Bank_Account__c-Bank Account Layout</members>
+        <members>Medical_Request__c-Approvals</members>
+        <members>Medical_Request__c-Claims</members>
+        <members>Medical_Request__c-Medical Request Layout</members>
+        <members>Medical_Request__c-Miscellaneous</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>claimsRequiredDocuments</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <types>
+        <members>Approval_Status</members>
+        <members>Claim_Status</members>
+        <members>Miscellaneous_Status</members>
+        <name>PathAssistant</name>
+    </types>
+    <types>
+        <members>MED_04_Manual_Request_Creation</members>
+        <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>Insured_Entity__c.Create_Domestic_Medical_Request</members>
+        <members>Insured_Entity__c.New_Medical_Request</members>
+        <members>Medical_Request__c.New</members>
+        <members>Medical_Request__c.Send_Medical_Email</members>
+        <name>QuickAction</name>
+    </types>
+    <types>
+        <members>MedicalRequestsReports</members>
+        <name>ReportFolder</name>
+    </types>
+    <types>
+        <members>MedicalRequestsReports/Claim_Amounts_by_Contract_ur3</members>
+        <members>MedicalRequestsReports/ClosedOpen_Requests_by_Users_UIh</members>
+        <members>MedicalRequestsReports/Copy_of_ClosedOpen_Requests_by_Month_JFz</members>
+        <members>MedicalRequestsReports/Medical_Requests_Claim_Amounts_Fei</members>
+        <members>MedicalRequestsReports/Medical_Requests_by_Contract_02J</members>
+        <members>MedicalRequestsReports/Medical_Requests_by_Insurance_Provider_06N</members>
+        <members>MedicalRequestsReports/Open_Medical_Requests_FCN</members>
+        <members>MedicalRequestsReports/SLA_Report_f0h</members>
+        <name>Report</name>
+    </types>
+    <types>
+        <members>Medical_Request__c</members>
+        <name>SharingRules</name>
+    </types>
+    <types>
+        <members>Medical_Request__c</members>
+        <name>TopicsForObjects</name>
+    </types>
+    <version>67.0</version>
+</Package>
